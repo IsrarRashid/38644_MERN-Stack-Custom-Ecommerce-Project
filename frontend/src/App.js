@@ -14,6 +14,8 @@ import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
 import ProtectedCheckoutRoute from "./components/ProtectedCheckoutRoute";
+import PaymentMethodPage from "./pages/PaymentMethodPage";
+import PreviewOrderPage from "./pages/PreviewOrderPage";
 
 function App() {
   // 38644- Israr Rashid
@@ -38,6 +40,7 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route element={<ProtectedCheckoutRoute />}>
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/preview-order" element={<PreviewOrderPage />} />
         </Route>
       </Routes>
     </Router>

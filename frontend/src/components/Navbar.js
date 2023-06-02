@@ -99,6 +99,15 @@ const Navbar = () => {
                     Sign Out
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link
+                    onClick={() => handleSignOut()}
+                    className="nav-link text-white fw-bold"
+                    to="/my-orders"
+                  >
+                    My Orders
+                  </Link>
+                </li>
               </>
             ) : (
               <>
@@ -174,12 +183,6 @@ const Navbar = () => {
                   <span class="visually-hidden">unread messages</span>
                 </span>
               </Link>
-              {/* <Link className="nav-link text-white fw-bold" to="/cart">
-                My Cart
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                  {result.length}
-                </span>
-              </Link> */}
             </li>
           </ul>
         </div>

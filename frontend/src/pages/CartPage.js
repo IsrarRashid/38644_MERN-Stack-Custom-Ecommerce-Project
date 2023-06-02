@@ -8,8 +8,8 @@ const Cart = () => {
   const state = useSelector((state) => state.cardRed);
   console.log(state);
   const dispatch = useDispatch();
-  const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -29,6 +29,7 @@ const Cart = () => {
   const handleCheckoutClick = () => {
     if (user) {
       navigate("/checkout");
+      console.log(state);
     } else {
       navigate("/sign-in");
     }

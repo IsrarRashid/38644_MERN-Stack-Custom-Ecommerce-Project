@@ -59,7 +59,7 @@ const SignInUserPage = () => {
             value={password}
             name="password"
             required
-            type="text"
+            type="password"
             className="form-control"
             id="exampleInputPassword1"
             aria-describedby="passwordHelp"

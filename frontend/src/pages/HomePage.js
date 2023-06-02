@@ -59,7 +59,7 @@ const HomePage = () => {
       <footer className="footer mt-auto py-3">
         <div className="container text-center">
           <span className="text-muted">
-            &copy; Copyright (c) 2023 Israr Rashid. All rights reserved.{" "}
+            &copy; Copyright (c) 2023 Israr Rashid. All Rights Reserved.
           </span>
         </div>
       </footer>
