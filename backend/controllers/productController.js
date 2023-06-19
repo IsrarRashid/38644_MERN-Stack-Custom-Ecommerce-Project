@@ -64,6 +64,16 @@ export const updateProduct = async (req, res) => {
     );
 
     if (updatedProduct) {
+      // Check if a new image is uploaded
+      if (req.file) {
+        // Delete the previous image if it exists
+        if (updatedProduct.image) {
+          fs.unlinkSync("uploads/" + updatedProduct.image);
+        }
+        // Update the image field with the new filename
+        updatedProduct.image = req.file.filename;
+        await updatedProduct.save();
+      }
       res.json(updatedProduct);
     } else {
       res.status(404).json({ error: "Product not found" });
@@ -80,6 +90,10 @@ export const deleteProduct = async (req, res) => {
     const deletedProduct = await ProductModel.findByIdAndRemove(id);
 
     if (deletedProduct) {
+      // delete the corresponding image file
+      const imagePath = `./uploads/${deletedProduct.image}`;
+      fs.unlinkSync(imagePath);
+
       res.json(deletedProduct);
     } else {
       res.status(404).json({ error: "Product not found" });

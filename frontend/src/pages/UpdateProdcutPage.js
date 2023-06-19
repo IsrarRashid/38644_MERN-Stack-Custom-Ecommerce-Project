@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const UpdateProductPage = ({ productId }) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
+  const [image, setImage] = useState(null);
+  const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        // let fData = fetchProduct.find((x) => x._id == id);
         const response = await axios.get(
           `/api/product/get-single-product/${id}`
         );
@@ -32,16 +33,20 @@ const UpdateProductPage = ({ productId }) => {
     e.preventDefault();
 
     try {
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("price", price);
+      formData.append("description", description);
+      formData.append("image", image);
+
       // send a post request to the server to udpate the product
-      const response = await axios.post(`/api/product/update/${id}`, {
-        name,
-        price,
-        description,
-      });
+      const response = await axios.post(`/api/product/update/${id}`, formData);
       // reset the form
       setName("");
       setPrice("");
       setDescription("");
+      setImage(null);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -87,6 +92,19 @@ const UpdateProductPage = ({ productId }) => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             aria-describedby="descriptionHelp"
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="exampleInputImage" className="form-label">
+            Image
+          </label>
+          <input
+            type="file"
+            className="form-control"
+            id="exampleInputImage"
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files[0])}
+            aria-describedby="imageHelp"
           />
         </div>
         <button type="submit" className="btn btn-primary">

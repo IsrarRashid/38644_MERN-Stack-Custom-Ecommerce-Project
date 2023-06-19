@@ -34,7 +34,7 @@ router.get("/get-single-product/:id", GetSingleProduct);
 router.get("/show-all", getAllProducts);
 
 // route for updating a product
-router.post("/update/:id", updateProduct);
+router.post("/update/:id", upload.single("image"), updateProduct);
 
 // route for deleting a product
 router.delete("/delete/:id", deleteProduct);

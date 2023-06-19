@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 // import { Outlet } from "react-router-dom";
 
 const RegisterUserPage = () => {
@@ -8,6 +9,7 @@ const RegisterUserPage = () => {
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +32,7 @@ const RegisterUserPage = () => {
       setAddress("");
       setPhone("");
       setPassword("");
+      navigate("/");
     } catch (error) {
       console.log(error);
     }

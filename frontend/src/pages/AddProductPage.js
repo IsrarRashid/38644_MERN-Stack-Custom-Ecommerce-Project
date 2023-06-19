@@ -36,6 +36,7 @@ const AddProductPage = () => {
       setDescription("");
       navigate("/manage-products");
       setImage(null);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
